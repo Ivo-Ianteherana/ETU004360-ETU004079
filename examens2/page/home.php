@@ -21,6 +21,11 @@ foreach ($objets as $objet) {
         $availableObjects++;
     }
 }
+if (isset($_GET['objet_n']) && isset($_GET['nombre']))
+{
+    $ob = get_objet($_GET['objet_n']);
+    $availability = $ob['id_objet'];
+}
 ?>
 <!doctype html>
 <html lang="fr">
@@ -113,11 +118,36 @@ foreach ($objets as $objet) {
                             <?php endif; ?>
                         </span>
                     </div>
+                    <div>
+                        <p>Statut:</p>
+                        <?php
+                            if (isset($availability))
+                            {
+                                if ($availability==$objet['id_objet'])
+                                { ?>
+                                    <p>Disponible dans <?= $_GET['nombre']; ?> jours</p>
+                                <?php}
+                                else { ?>
+                                    <p>Disponible</p>
+                                <?php }
+                            }
+                            else
+                            { ?>
+                                <p>Disponible</p>
+                            <?php }
+                        ?>
+
+                    </div>
 
                     <form action="traitementimage.php" method="post" enctype="multipart/form-data" class="upload-form">
                         <input type="file" name="objet_image" accept="image/*">
                         <input type="hidden" name="id_objet" value="<?= $objet['id_objet']; ?>">
                         <input type="submit" value="Ajouter une image">
+                    </form>
+
+                    <form action="statut.php" method="post">
+                        <input type="hidden" name="id_objet" value="<?= $objet['id_objet']; ?>">
+                        <input type="submit" value="Emprunter">
                     </form>
                 </div>
             <?php endforeach; ?>
