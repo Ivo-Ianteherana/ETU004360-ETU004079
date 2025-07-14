@@ -8,5 +8,17 @@ Créer toutes les base de données
 
 
 Page Inscription
-        code sql :
-            _fonction insertion de données(
+
+            _fonction insertion de données
+            -page inscription
+            -rediriger vers traitementinscriptions
+                    si inserer , si erreur , si existe deja rediriger vers connexion
+            -page connexion
+
+            -traitementconnexion
+                si oui direction vers home
+                si non reessaye
+
+            -home
+                -Liste des objets
+                    fonction

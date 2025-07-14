@@ -22,6 +22,8 @@ if(isset($_GET['error']))
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CONNEXION</title>
+    <link rel="stylesheet" href="../assets/style.css">
+
 </head>
 <body>
 
@@ -30,5 +32,7 @@ if(isset($_GET['error']))
     <input type="password" name="mdp">
     <input type="submit" value="connexion">
 </form>
+
+<a href="inscription.php">S inscrire</a>
 </body>
 </html>

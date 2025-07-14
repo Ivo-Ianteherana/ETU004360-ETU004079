@@ -8,6 +8,7 @@ ini_set('display_errors', 1);
     {
         $idM=$_SESSION['id'];
     }
+    $objets=listerobjet();
 ?>
 
 <!doctype html>
@@ -18,8 +19,25 @@ ini_set('display_errors', 1);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="../assets/style.css">
+
 </head>
 <body>
-<p><Bienvenue></p>
+        <?php
+        foreach ($objets as $objet)
+        {
+            echo $objet['nom'];
+            echo $objet['nom_categorie'];
+            echo $objet['nom_objet'];
+            if($objet['date_emprunt'] != null)
+            {
+                echo $objet['date_retour'];
+            }
+            else {
+                echo "Pas d'emprunt";
+            }
+        }
+
+        ?>
 </body>
 </html>

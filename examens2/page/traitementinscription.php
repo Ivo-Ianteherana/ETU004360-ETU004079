@@ -1,7 +1,10 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require ('../inc/function.php');
 session_start();
-if(isset($_POST['nom']) && isset($_POST['mdp']) && isset($_POST['dtn']) && isset($_POST['genre']) && isset($_POST['email']) && isset($_POST['ville']) && isset($_FILES['image']))
+if(isset($_POST['nom']) && isset($_POST['mdp']) && isset($_POST['dtn']) && isset($_POST['genre']) && isset($_POST['email']) && isset($_POST['ville']) )
 {
     $nom=$_POST['nom'];
     $mdp=$_POST['mdp'];
@@ -9,9 +12,9 @@ if(isset($_POST['nom']) && isset($_POST['mdp']) && isset($_POST['dtn']) && isset
     $genre=$_POST['genre'];
     $mail=$_POST['email'];
     $ville=$_POST['ville'];
-    $image=$_FILES['image'];
 
-    $load = inscrire($nom, $mdp, $dtn, $genre, $mail, $ville, $image);
+
+    $load = inscrire($nom, $mdp, $dtn, $genre, $mail, $ville);
 
     if ($load !== false && $load !== -1) {
         $_SESSION['id'] = $load;
