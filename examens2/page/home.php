@@ -21,7 +21,7 @@ foreach ($objets as $objet) {
         $availableObjects++;
     }
 }
-if (isset($_GET['objet_n']) && isset($_GET['nombre']))
+if (isset($_GET['objet_n']) && isset($_GET['nbr']))
 {
     $ob = get_objet($_GET['objet_n']);
     $availability = $ob['id_objet'];
@@ -125,7 +125,7 @@ if (isset($_GET['objet_n']) && isset($_GET['nombre']))
                             {
                                 if ($availability==$objet['id_objet'])
                                 { ?>
-                                    <p>Disponible dans <?= $_GET['nombre']; ?> jours</p>
+                                    <p>Disponible dans <?= $_GET['nbr']; ?> jours</p>
                                 <?php}
                                 else { ?>
                                     <p>Disponible</p>

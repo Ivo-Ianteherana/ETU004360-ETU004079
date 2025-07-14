@@ -19,10 +19,10 @@
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <h1>Voulez vous emprunter cet objet ?</h1>
+    <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Voulez vous emprunter cet objet ?</h1>
 
     <form action="home.php" method="get">
-        <input type="number" name="nombre" />
+        <p>Nombre de jours: <input type="number" name="nbr" /></p>
         <input type="hidden" name="objet_n" value="<?php echo $object; ?>">
         <input type="submit" value="entrer">
     </form>
