@@ -4,3 +4,9 @@ Créer toutes les base de données
    - objet (id_objet , nom_objet , id_categorie, id_membre)
    - images_objet(id_image, id_objet, nom_image)
    - emprunt(id_emprunt, id_objet, id_membre, date_emprunt, date_retour)
+
+
+
+Page Inscription
+        code sql :
+            _fonction insertion de données(
