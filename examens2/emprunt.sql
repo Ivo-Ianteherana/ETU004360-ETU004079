@@ -116,3 +116,16 @@ INSERT INTO em_membre (nom, date_naissance, genre, mail, mdp, ville, image_profi
                                                                                        ('Bob', '1990-06-15', 'H', 'bob@mail.com', 'bobpass', 'Toamasina', 'bob.jpg'),
                                                                                        ('Claire', '2000-02-28', 'F', 'claire@mail.com', 'clairepass', 'Fianarantsoa', 'claire.jpg'),
                                                                                        ('David', '1992-12-01', 'H', 'david@mail.com', 'davidpass', 'Mahajanga', 'david.jpg');
+
+
+
+CREATE TABLE em_retour (
+                           id_retour INT PRIMARY KEY AUTO_INCREMENT,
+                           id_membre INT,
+                           nom_objet VARCHAR(200),
+                           nom_categorie VARCHAR(200),
+                           date_emprunt DATE,
+                           date_retour DATE,
+                           etat VARCHAR(50),
+                           FOREIGN KEY (id_membre) REFERENCES em_membre(idmembre)
+);

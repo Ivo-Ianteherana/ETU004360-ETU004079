@@ -126,7 +126,7 @@ if (isset($_GET['objet_n']) && isset($_GET['nbr']))
                                 if ($availability==$objet['id_objet'])
                                 { ?>
                                     <p>Disponible dans <?= $_GET['nbr']; ?> jours</p>
-                                <?php}
+                                <?php }
                                 else { ?>
                                     <p>Disponible</p>
                                 <?php }

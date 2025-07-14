@@ -256,4 +256,64 @@ function get_membre( $id )
 }
 
 
+
+function get_emprunt($membre_id)
+{
+       if ($base = connection()) {
+              $query = "SELECT e.id_emprunt, o.nom_objet, c.nom_categorie, e.date_emprunt, e.date_retour 
+                  FROM em_emprunt e 
+                  JOIN em_objet o ON e.id_objet = o.id_objet 
+                  JOIN em_categorie_objet c ON o.id_categorie = c.id_categorie 
+                  WHERE e.id_membre = '$membre_id' AND e.date_retour >= CURDATE()";
+                $exe = mysqli_query($base, $query);
+                $data = array();
+
+                if ($exe) {
+                        while ($row = mysqli_fetch_assoc($exe)) {
+                                $data[] = $row;
+                            }
+        }
+    }
+
+    return $data;
+}
+function return_object($id_emprunt, $etat)
+{
+    if ($base = connection()) {
+        // Récupérer les infos de l'emprunt
+        $query = "SELECT e.*, o.nom_objet, c.nom_categorie 
+                  FROM em_emprunt e 
+                  JOIN em_objet o ON e.id_objet = o.id_objet 
+                  JOIN em_categorie_objet c ON o.id_categorie = c.id_categorie 
+                  WHERE e.id_emprunt = '$id_emprunt'";
+        $res = mysqli_query($base, $query);
+
+        if ($res && mysqli_num_rows($res) > 0) {
+            $data = mysqli_fetch_assoc($res);
+
+            // Insérer dans em_retour
+            $insert = "INSERT INTO em_retour (id_membre, nom_objet, nom_categorie, date_emprunt, date_retour, etat)
+                       VALUES (
+                            '{$data['id_membre']}', 
+                            '{$data['nom_objet']}', 
+                            '{$data['nom_categorie']}',
+                            '{$data['date_emprunt']}',
+                            '{$data['date_retour']}',
+                            '$etat'
+                       )";
+
+            $ins = mysqli_query($base, $insert);
+
+            if ($ins) {
+                // Supprimer l’emprunt
+                $delete = "DELETE FROM em_emprunt WHERE id_emprunt = '$id_emprunt'";
+                return mysqli_query($base, $delete);
+            }
+        }
+    }
+
+    return false;
+}
+
+
 ?>
