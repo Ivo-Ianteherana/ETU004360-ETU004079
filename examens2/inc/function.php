@@ -1,47 +1,42 @@
 <?php require('connect.php');
 
 
-function inscrire($nom ,$mdp,$datedenaissance,$genre,$mail,$ville)
+function inscrire($nom, $mdp, $datedenaissance, $genre, $mail, $ville, $image)
 {
-    $base=connection();
-    if($base)
-    {
-        $x =array();
-        $requete1= "SELECT * FROM em_membre WHERE nom='$nom' AND mdp='$mdp' AND date_naissance='$datedenaissance' AND genre='$genre' AND mail='$mail' AND ville='$ville' ";
+    $base = connection();
+    if ($base) {
+        $requete1 = "SELECT * FROM em_membre WHERE nom='$nom' AND mdp='$mdp' AND date_naissance='$datedenaissance' AND genre='$genre' AND mail='$mail' AND ville='$ville'";
         $exe1 = mysqli_query($base, $requete1);
 
-        if(mysqli_num_rows($exe1)==0)
-        {
-            $requete = "INSERT INTO em_membre (nom,mdp,date_naissance,genre,mail,ville) VALUES ('$nom','$mdp','$datedenaissance','$genre','$mail','$ville')";
+        if (mysqli_num_rows($exe1) == 0) {
+            $requete = "INSERT INTO em_membre (nom, mdp, date_naissance, genre, mail, ville, image_profil)
+                        VALUES ('$nom', '$mdp', '$datedenaissance', '$genre', '$mail', '$ville', '$image')";
             $exe = mysqli_query($base, $requete);
-            if($exe)
-            {
-                $query="SELECT * FROM em_membre WHERE nom='$nom' AND mdp='$mdp' AND mail='$mail'";
-                $ex=mysqli_query($base,$query);
-
-                if ($ex)
-                {
-                    $row=mysqli_fetch_assoc($ex);
+            if ($exe) {
+                $query = "SELECT * FROM em_membre WHERE nom='$nom' AND mdp='$mdp' AND mail='$mail'";
+                $ex = mysqli_query($base, $query);
+                if ($ex) {
+                    $row = mysqli_fetch_assoc($ex);
                     return $row['idmembre'];
                 }
+            } else {
+                return false;
             }
-            else return false;
-        }
-        else if (mysqli_num_rows($exe1)>0)
-        {
+        } else {
             return -1;
         }
-
     }
 }
-function getid($nom ,$mdp,$datedenaissance,$genre,$mail,$ville)
+
+
+function getid($id)
 {
-    $requete="SELECT * FROM em_membre WHERE nom='$nom' AND mdp='$mdp' AND date_naissance='$datedenaissance' AND genre='$genre' AND mail='$mail' AND ville='$ville'";
+    $requete="SELECT * FROM em_membre WHERE idmembre='$id'";
     $exe=mysqli_query(connection(),$requete);
     if(mysqli_num_rows($exe)>0)
     {
         $x=mysqli_fetch_assoc($exe);
-        return $x['id'];
+        return $x;
     }
     else return false;
 }
@@ -84,5 +79,85 @@ function listerobjet()
     else return false;
 }
 
+function filtrer($categorie)
+{
+    $base=connection();
+    $requete="SELECT * FROM v_objet_emprunt WHERE nom_categorie='$categorie'";
+    $exe=mysqli_query($base,$requete);
+    $row=array();
+    if($exe)
+    {
+        while($x=mysqli_fetch_assoc($exe))
+        {
+            $row[]=$x;
+        }
+        return $row;
+    }
+    else return false;
+}
+
+function upload_image( $files )
+{
+    $uploadDir = __DIR__ . '/../assets/uploads/';
+    $maxSize = 2 * 1024 * 1024;
+    $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($files))
+    {
+        $file = $files;
+
+        if ($file['error'] !== UPLOAD_ERR_OK)
+        {
+            die('Erreur lors de l’upload : ' . $file['error']);
+        }
+
+        if ($file['size'] > $maxSize)
+        {
+            die('Le fichier est trop volumineux.');
+        }
+
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mime = finfo_file($finfo, $file['tmp_name']);
+        finfo_close($finfo);
+
+        if ( !in_array($mime, $allowedMimeTypes) )
+        {
+            die('Type de fichier non autorisé : ' . $mime);
+        }
+
+        $originalName = pathinfo($file['name'], PATHINFO_FILENAME);
+        $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+        $newName = $originalName . '_' . uniqid() . '.' . $extension;
+
+        if( move_uploaded_file( $file['tmp_name'], $uploadDir . $newName ) )
+        {
+            return $newName;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+function insert_image( $id_objet, $name )
+{
+    if ($base=connection())
+    {
+        $query="INSERT INTO em_objet_image ( id_objet, image_objet ) VALUES ( '$id_objet', '$name' )";
+        $exe=mysqli_query($base,$query);
+        echo $query;
+        if ($exe)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 ?>

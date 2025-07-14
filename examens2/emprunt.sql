@@ -98,17 +98,7 @@ INSERT INTO em_objet (nom_objet, id_categorie, nom_image) VALUES
                                                               ('Pince universelle', 2, 'pinceuni.jpg'),
                                                               ('Tournevis électrique', 2, 'tournelec.jpg');
 
-INSERT INTO em_emprunt (id_membre, id_objet, date_emprunt, date_retour) VALUES
-                                                                            (1, 1, '2025-07-01', '2025-07-10'),
-                                                                            (1, 3, '2025-07-03', '2025-07-12'),
-                                                                            (2, 12, '2025-07-02', '2025-07-09'),
-                                                                            (2, 14, '2025-07-04', '2025-07-14'),
-                                                                            (3, 21, '2025-07-05', '2025-07-15'),
-                                                                            (3, 26, '2025-07-06', '2025-07-16'),
-                                                                            (4, 31, '2025-07-07', '2025-07-17'),
-                                                                            (4, 33, '2025-07-08', '2025-07-18'),
-                                                                            (1, 9, '2025-07-09', '2025-07-19'),
-                                                                         (2, 18, '2025-07-10', '2025-07-20');
+q
 
 INSERT INTO em_membre (nom, date_naissance, genre, mail, mdp, ville, image_profil) VALUES
                                                                                        ('Alice', '1995-04-10', 'F', 'alice@mail.com', 'pass123', 'Antananarivo', 'alice.jpg'),
