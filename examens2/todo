@@ -1,0 +1,6 @@
+Créer toutes les base de données
+   - membre (id_membre, nom , date de naissance, genre, émail, ville, mdp, image_profil)
+   - categorie_objet (id_categorie, nom_categorie )
+   - objet (id_objet , nom_objet , id_categorie, id_membre)
+   - images_objet(id_image, id_objet, nom_image)
+   - emprunt(id_emprunt, id_objet, id_membre, date_emprunt, date_retour)
