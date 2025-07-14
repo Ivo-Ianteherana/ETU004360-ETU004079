@@ -4,17 +4,17 @@ ini_set('display_errors', 1);
 require ('../inc/function.php');
 
 $alertMessage = '';
-$alertType = '';
+$typealert = '';
 
 if(isset($_GET['deja']))
 {
     $alertMessage = 'Vous devez vous connecter pour accéder à cette page.';
-    $alertType = 'alert-info';
+    $typealert = 'alert-info';
 }
 if(isset($_GET['error']))
 {
     $alertMessage = 'Identifiants incorrects. Veuillez réessayer.';
-    $alertType = 'alert-error';
+    $typealert = 'alert-error';
 }
 ?>
 
@@ -40,11 +40,11 @@ if(isset($_GET['error']))
 
     <div class="welcome-message">
         <h3>Bienvenue sur notre plateforme</h3>
-        <p>Connectez-vous pour accéder à vos objets partagés et découvrir ce que votre communauté propose.</p>
+        <p>Connectez-vous pour accéder à vos objets partagés et découvrir ce que votre communauté propose</p>
     </div>
 
     <?php if($alertMessage): ?>
-        <div class="alert <?php echo $alertType; ?>">
+        <div class="alert <?php echo $typealert; ?>">
             <?php echo $alertMessage; ?>
         </div>
     <?php endif; ?>

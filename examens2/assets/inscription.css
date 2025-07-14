@@ -1,15 +1,15 @@
-/* Palette de couleurs vert forêt */
+/* Purple Indigo Color Palette */
 :root {
-    --forest-primary: #2d5016;
-    --forest-secondary: #4a7c32;
-    --forest-light: #6b9b47;
-    --forest-dark: #1a3009;
-    --forest-accent: #8bc34a;
-    --forest-bg: #f1f8e9;
+    --primary-purple: #4c1d95;
+    --secondary-purple: #6d28d9;
+    --light-purple: #8b5cf6;
+    --dark-purple: #3730a3;
+    --accent-purple: #a855f7;
+    --purple-bg: #f3f4f6;
     --white: #ffffff;
-    --gray-light: #f5f5f5;
-    --gray-medium: #888;
-    --shadow: rgba(45, 80, 22, 0.1);
+    --light-gray: #f9fafb;
+    --medium-gray: #6b7280;
+    --shadow-color: rgba(76, 29, 149, 0.15);
 }
 
 * {
@@ -19,8 +19,8 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, var(--forest-bg) 0%, var(--forest-light) 100%);
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--purple-bg) 0%, #e0e7ff 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -31,7 +31,7 @@ body {
 .auth-container {
     background: var(--white);
     border-radius: 20px;
-    box-shadow: 0 20px 40px var(--shadow);
+    box-shadow: 0 10px 40px var(--shadow-color);
     padding: 40px;
     max-width: 500px;
     width: 100%;
@@ -46,7 +46,7 @@ body {
     left: 0;
     right: 0;
     height: 5px;
-    background: linear-gradient(90deg, var(--forest-primary), var(--forest-accent));
+    background: linear-gradient(90deg, var(--primary-purple), var(--accent-purple));
 }
 
 .auth-header {
@@ -55,7 +55,7 @@ body {
 }
 
 .auth-title {
-    color: var(--forest-primary);
+    color: var(--primary-purple);
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 10px;
@@ -64,9 +64,43 @@ body {
 }
 
 .auth-subtitle {
-    color: var(--gray-medium);
+    color: var(--medium-gray);
     font-size: 1.1rem;
     margin-bottom: 20px;
+}
+
+.requirements {
+    background: var(--purple-bg);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border-left: 4px solid var(--primary-purple);
+}
+
+.requirements h4 {
+    color: var(--primary-purple);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.requirements ul {
+    list-style: none;
+    padding: 0;
+}
+
+.requirements li {
+    color: var(--secondary-purple);
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.requirements li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-purple);
+    font-weight: bold;
 }
 
 .form-group {
@@ -76,7 +110,7 @@ body {
 
 .form-label {
     display: block;
-    color: var(--forest-primary);
+    color: var(--primary-purple);
     font-weight: 600;
     margin-bottom: 8px;
     font-size: 0.9rem;
@@ -91,19 +125,19 @@ body {
     border-radius: 12px;
     font-size: 1rem;
     transition: all 0.3s ease;
-    background: var(--gray-light);
+    background: var(--light-gray);
 }
 
 .form-input:focus {
     outline: none;
-    border-color: var(--forest-primary);
+    border-color: var(--primary-purple);
     background: var(--white);
-    box-shadow: 0 0 20px var(--shadow);
+    box-shadow: 0 0 20px var(--shadow-color);
     transform: translateY(-2px);
 }
 
 .form-input::placeholder {
-    color: var(--gray-medium);
+    color: var(--medium-gray);
     font-style: italic;
 }
 
@@ -113,17 +147,17 @@ body {
     border: 2px solid #e0e0e0;
     border-radius: 12px;
     font-size: 1rem;
-    background: var(--gray-light);
-    color: var(--forest-primary);
+    background: var(--light-gray);
+    color: var(--primary-purple);
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .form-select:focus {
     outline: none;
-    border-color: var(--forest-primary);
+    border-color: var(--primary-purple);
     background: var(--white);
-    box-shadow: 0 0 20px var(--shadow);
+    box-shadow: 0 0 20px var(--shadow-color);
 }
 
 .file-input-wrapper {
@@ -141,10 +175,10 @@ body {
 .file-input-label {
     display: block;
     padding: 15px 20px;
-    border: 2px dashed var(--forest-primary);
+    border: 2px dashed var(--primary-purple);
     border-radius: 12px;
-    background: var(--forest-bg);
-    color: var(--forest-primary);
+    background: var(--purple-bg);
+    color: var(--primary-purple);
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -152,7 +186,7 @@ body {
 }
 
 .file-input-label:hover {
-    background: var(--forest-light);
+    background: var(--light-purple);
     color: var(--white);
     transform: translateY(-2px);
 }
@@ -160,7 +194,7 @@ body {
 .btn-primary {
     width: 100%;
     padding: 18px;
-    background: linear-gradient(135deg, var(--forest-primary), var(--forest-secondary));
+    background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
     color: var(--white);
     border: none;
     border-radius: 12px;
@@ -174,16 +208,16 @@ body {
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--forest-secondary), var(--forest-light));
+    background: linear-gradient(135deg, var(--secondary-purple), var(--light-purple));
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px var(--shadow);
+    box-shadow: 0 10px 30px var(--shadow-color);
 }
 
 .auth-link {
     display: block;
     text-align: center;
     margin-top: 25px;
-    color: var(--forest-primary);
+    color: var(--primary-purple);
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -192,43 +226,9 @@ body {
 }
 
 .auth-link:hover {
-    background: var(--forest-bg);
-    color: var(--forest-secondary);
+    background: var(--purple-bg);
+    color: var(--secondary-purple);
     transform: translateY(-2px);
-}
-
-.requirements {
-    background: var(--forest-bg);
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 25px;
-    border-left: 4px solid var(--forest-primary);
-}
-
-.requirements h4 {
-    color: var(--forest-primary);
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-}
-
-.requirements ul {
-    list-style: none;
-    padding: 0;
-}
-
-.requirements li {
-    color: var(--forest-secondary);
-    margin-bottom: 8px;
-    padding-left: 20px;
-    position: relative;
-}
-
-.requirements li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--forest-accent);
-    font-weight: bold;
 }
 
 @media (max-width: 768px) {

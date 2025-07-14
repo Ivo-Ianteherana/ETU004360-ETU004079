@@ -1,6 +1,5 @@
 <?php
-require ('../inc/function.php');
-
+require('../inc/function.php');
 ?>
 <!doctype html>
 <html lang="fr">
@@ -9,7 +8,7 @@ require ('../inc/function.php');
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Inscription </title>
+    <title>Inscription - Plateforme de Partage</title>
     <link rel="stylesheet" href="../assets/inscription.css">
     <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -75,7 +74,7 @@ require ('../inc/function.php');
             <div class="file-input-wrapper">
                 <input type="file" name="image" id="image" accept="image/*">
                 <label for="image" class="file-input-label">
-                    Choisir une photo de profil
+                     Choisir une photo de profil
                 </label>
             </div>
         </div>

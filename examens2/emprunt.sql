@@ -39,10 +39,21 @@ create database emprunt;
             );
 
                    create or replace view v_objet_emprunt as
-                          SELECT o.id_objet ,o.nom_objet,c.nom_categorie,m.nom,e.date_emprunt,e.date_retour
+                          SELECT o.id_objet ,o.nom_objet,c.nom_categorie,m.nom,e.date_emprunt,e.date_retour, m.idmembre
                           FROM em_objet o INNER JOIN em_emprunt e ON o.id_objet = e.id_objet
                         JOIN em_categorie_objet c ON o.id_categorie = c.id_categorie
                           JOIN em_membre m ON e.id_membre = m.idmembre;
+
+CREATE OR REPLACE VIEW v_object_and_images as
+SELECT o.id_objet, oi.image_objet, o.nom_objet, o.nom_image
+FROM em_objet o JOIN em_objet_image oi ON o.id_objet=oi.id_objet;
+
+
+create or replace table em_objet_image(
+              id_objet int,
+              image_objet varchar(200),
+              FOREIGN KEY (id_objet) REFERENCES em_objet(id_objet)
+            );
 
 INSERT INTO em_categorie_objet (nom_categorie) VALUES
                                                    ('Esthétique'),

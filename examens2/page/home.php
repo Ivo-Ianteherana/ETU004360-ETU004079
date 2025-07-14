@@ -1,22 +1,21 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-require ('../inc/function.php');
+require('../inc/function.php');
 
 session_start();
-if(isset($_SESSION['id']))
-{
-    $idM=$_SESSION['id'];
+if (isset($_SESSION['id'])) {
+    $idM = $_SESSION['id'];
 }
-$objets=listerobjet();
+$objets = listerobjet();
 
 // Compteurs pour les statistiques
 $totalObjects = count($objets);
 $availableObjects = 0;
 $borrowedObjects = 0;
 
-foreach($objets as $objet) {
-    if($objet['date_emprunt'] != null) {
+foreach ($objets as $objet) {
+    if ($objet['date_emprunt'] != null) {
         $borrowedObjects++;
     } else {
         $availableObjects++;
@@ -70,7 +69,7 @@ foreach($objets as $objet) {
 </div>
 
 <div class="container">
-    <?php if(empty($objets)): ?>
+    <?php if (empty($objets)): ?>
         <div class="empty-state">
             <h3>Aucun objet disponible</h3>
             <p>Il n'y a actuellement aucun objet partagé dans la communauté. Soyez le premier à partager un objet !</p>
@@ -79,7 +78,7 @@ foreach($objets as $objet) {
         <div class="objects-grid">
             <?php foreach ($objets as $objet): ?>
                 <div class="objet-card">
-                    <div class="objet-nom"><?php echo htmlspecialchars($objet['nom']); ?></div>
+                    <div class="objet-nom"><a href="fiche_membre.php?m_no=<?php echo $objet['idmembre']; ?>"><?php echo htmlspecialchars($objet['nom']); ?></a></div>
 
                     <div class="objet-info">
                         <span class="info-label">Catégorie:</span>
@@ -93,13 +92,17 @@ foreach($objets as $objet) {
 
                     <div class="objet-info">
                         <span class="info-label">Nom:</span>
-                        <span class="info-value"><?php echo htmlspecialchars($objet['nom_objet']); ?></span>
+                        <span class="info-value">
+                            <a href="fiche_objet.php?objet_no=<?php echo $objet['id_objet']; ?>">
+                                <?php echo htmlspecialchars($objet['nom_objet']); ?>
+                            </a>
+                        </span>
                     </div>
 
                     <div class="objet-info">
                         <span class="info-label">Status:</span>
                         <span class="info-value">
-                            <?php if($objet['date_emprunt'] != null): ?>
+                            <?php if ($objet['date_emprunt'] != null): ?>
                                 <span class="status-badge status-borrowed">
                                     Emprunté jusqu'au <?php echo htmlspecialchars($objet['date_retour']); ?>
                                 </span>
@@ -110,9 +113,13 @@ foreach($objets as $objet) {
                             <?php endif; ?>
                         </span>
                     </div>
+
+                    <form action="traitementimage.php" method="post" enctype="multipart/form-data" class="upload-form">
+                        <input type="file" name="objet_image" accept="image/*">
+                        <input type="hidden" name="id_objet" value="<?= $objet['id_objet']; ?>">
+                        <input type="submit" value="Ajouter une image">
+                    </form>
                 </div>
-
-
             <?php endforeach; ?>
         </div>
     <?php endif; ?>

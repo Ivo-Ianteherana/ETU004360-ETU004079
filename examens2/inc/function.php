@@ -160,4 +160,99 @@ function insert_image( $id_objet, $name )
     return false;
 }
 
+
+function get_object_info( $id_objet )
+{
+    if ($base=connection())
+    {
+        $query="SELECT * FROM v_object_and_images WHERE id_objet='$id_objet'";
+        $exe=mysqli_query($base,$query);
+        $row=array();
+
+        if ($exe)
+        {
+            while ($data=mysqli_fetch_assoc($exe))
+            {
+                $row[]=$data;
+            }
+        }
+    }
+
+    return $row;
+}
+
+function get_objet( $id_objet )
+{
+    if ($base=connection())
+    {
+        $query="SELECT * FROM em_objet WHERE id_objet='$id_objet'";
+        $exe=mysqli_query($base,$query);
+
+        if ($exe)
+        {
+            $row=mysqli_fetch_assoc($exe);
+        }
+    }
+
+    return $row;
+}
+
+
+function get_historique( $id )
+{
+    if ($base=connection())
+    {
+        $query="SELECT * FROM v_objet_emprunt WHERE id_objet='$id'";
+        $exe=mysqli_query($base,$query);
+        $data=array();
+
+        if ($exe)
+        {
+            while ($row=mysqli_fetch_assoc($exe))
+            {
+                $data[] = $row;
+            }
+        }
+    }
+
+    return $data;
+}
+
+
+function get_objet_membre( $id )
+{
+    if ($base=connection())
+    {
+        $query="SELECT * FROM v_objet_emprunt WHERE idmembre='$id'";
+        $exe=mysqli_query($base,$query);
+        $data=array();
+
+        if ($exe)
+        {
+            while ($row=mysqli_fetch_assoc($exe))
+            {
+                $data[] = $row;
+            }
+        }
+    }
+
+    return $data;
+}
+
+function get_membre( $id )
+{
+    if ($base=connection())
+    {
+        $query="SELECT *, TIMESTAMPDIFF( year, date_naissance, NOW()) age FROM em_membre WHERE idmembre='$id'";
+        $exe=mysqli_query($base,$query);
+
+        if ($exe)
+        {
+            $row=mysqli_fetch_assoc($exe);
+        }
+    }
+
+    return $row;
+}
+
 ?>
