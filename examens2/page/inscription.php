@@ -29,7 +29,6 @@ require ('../inc/function.php');
     <input type="text" name="ville" placeholder="Ville">
     <input type="file" name="image">
     <input type="submit" value="inscription">
-    <p>     aaa</p>
 
 </form>
 </body>
